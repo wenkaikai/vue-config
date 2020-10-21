@@ -9,15 +9,19 @@ import Vue from 'vue';
 new Vue({
     el:"#root",
     template:`<div>
+
+    <form action="">
     <p>Name:{{name}}</p>
     <p>Name:{{getName()}}</p>
     <p>{{number}}</p>
     <p>fullName:{{fullName}}</p>
-    <p><input text="number" v-model="number"></p>
+    <p><input text="number" type="search" v-model="number"></p>
     <p><input text="text" v-model="firstName"></p>
     <p><input text="text" v-model="lastName"></p>
     <p>"绑定了computed"<input text="text" v-model="name"></p>
     <p><input text="text" v-model="obj.a"></p>
+    </form>
+   
 
     </div>`,
     data:{
