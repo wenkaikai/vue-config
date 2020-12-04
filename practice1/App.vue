@@ -1,91 +1,76 @@
 <template>
-  <div>
-    <ul>
-      <li>
-        <router-link to="/keep">keep-alive</router-link>
-      </li>
-      <li>
-        <router-link to="/noKeep">no-keep-alive</router-link>
-      </li>
-      <li>
-        <router-link to="/noKeep1">no-keep-alive</router-link>
-      </li>
-      <li>{{_list}}</li>
-      <li @click="dianji">点击</li>
-    </ul>
-
-    <!-- <keep-alive>
-      <router-view name="keep"></router-view>
-    </keep-alive>
-    <router-view name="nokeep"></router-view>-->
-
-
-    <keep-alive :include="['keep','nokeep']">
+  <div class="app">
+    <div class="left">
+      <div v-for="item,index in routes" v-bind:key="index">
+        <div class="title" @click="toPage(item.name)">{{index+1}} . {{item.meta.chName}}</div>
+        <ul>
+          <li v-for="item1,index1 in item.children" :key="index1" @click="toChildrenPage(item.name,item1.name)">
+            {{item1.meta.chName}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+      <keep-alive>
         <router-view></router-view>
-    </keep-alive>
+      </keep-alive>
+    </div>
   </div>
 </template>
 <script>
+import routes from './router/routes';
 export default {
   data() {
     return {
       obj: {},
-      test:1234,
+      routes:routes,// 路由
     };
   },
 
-  computed:{
-    _list(){
-      console.log("_list")
-      return this.list();
-    }
-  },
-  created(){
-    console.log("created")
-  },
+  computed: {},
+  created() {},
   watch: {
-    $route() {}
+    $route() {},
   },
-  mounted() {
-    //  console.log(this.$route);
-    // console.log(process)
-    // console.log(aa1)
-    console.warn(this.$router)// router实列
-    console.warn(this.$router.match)// 
-    console.warn(this.$router.mode)
-    console.warn(this.$router.app)
-
-    /**
-     *  router 原型方法上有14个方法
-     * 
-     * match
-     * init 
-     * beforeResolve
-     * afterEach
-     * onReady
-     * onError
-     * push
-     * replace
-     * go
-     * back
-     * forward
-     * getMatchedComponents
-     * resolve
-     * addRoutes
-     * 
-     * 
-     * 
-     */
-  },
-  methods:{
-    list(){
-      console.log("list")
-      return this.test+1
+  mounted() {},
+  methods: {
+    toPage(name){
+      this.$router.push({ path:`/${name}` })
     },
-    dianji(){
-      this.test = this.test+1
-      console.log(this.test)
+    toChildrenPage(parentName,name){
+      this.$router.push({ path: `/${parentName}/${name}` })
     }
-  }
+  },
 };
 </script>
+
+<style lang="stylus" scoped>
+.app {
+  display: flex;
+  height:100%;
+  padding:0;
+  box-sizing:border-box;
+  .left {
+    width: 30%;
+    height:100%;
+    background:#595c63;
+    color:#fff;
+    .title{
+      padding:1rem;
+      border-bottom:1px solid #fff;
+      font-size:1.5rem;
+    }
+    ul{
+      border-bottom:1px solid #fff; 
+    }
+    li{
+       padding:1rem;
+    }
+  }
+  .right {
+    // flex-grow: 1;
+    height:100%;
+    
+  }
+}
+</style>

@@ -52,11 +52,12 @@ config = merge(baseConfig,{
     devServer,
      resolve:{
         alias:{ // 可以指定vue 加载哪一个版本的
-            'vue':path.join(__dirname,'../node_modules/vue/dist/vue.esm.js')
-                /** 默认的导入vue 组件是runtime-only 版本的 如果是那个版本就不能再
+            /** 默认的导入vue 组件是runtime-only 版本的 如果是那个版本就不能再
                  * new vue 的时候用template
                  * 
-                 */
+             */
+            'vue':path.join(__dirname,'../node_modules/vue/dist/vue.esm.js'),
+            '@':path.join(__dirname,'../practice1/pages/'),   
          }
      },
     plugins:defaultPlugins.concat([

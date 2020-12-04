@@ -42,7 +42,11 @@ const config = {
             }
         ]
     },
-   
+    resolve:{
+        alias:{ // 可以指定vue 加载哪一个版本的
+            '@':path.resolve(__dirname,'../practice1/pages'),   
+         }
+     },
     devServer:{
         contentBase:path.resolve(__dirname,"dist"),
         port:8080,
