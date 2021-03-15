@@ -90,6 +90,14 @@ export default [
                     chName:"如何把值传给孙子组件比如属性prop"
                 },
                 name:"children"
+            },
+            {
+                path: "sibling",
+                component: ()=>import("@/props/sibling.vue"),
+                meta:{
+                    chName:"兄弟组件的传值"
+                },
+                name:"sibling"
             }
         ]
     },
