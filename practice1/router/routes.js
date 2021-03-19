@@ -101,6 +101,19 @@ export default [
             }
         ]
     },
+    /**组件问题 $on*/
+    {
+        path: "/$on",
+        component: () => import("@/$on/index.vue"),
+        meta: {
+            nav: "props",
+            chName:"$on"
+        },
+        name: "$on",
+        children: [
+           
+        ]
+    },
 
 ]
 

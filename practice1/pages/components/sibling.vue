@@ -16,7 +16,6 @@
   </div>
 </template>
 <script>
-import center from '../../js/center'
 export default {
   props: {
     vm: {
@@ -27,14 +26,14 @@ export default {
     },
   },
   mounted() {
-    center.$on("getClick", () => {
+    this.vm.$on("getClick", () => {
       console.log("getClick");
     });
-  },
+  },    
   methods: {
     getClick() {
-      center.$emit("getClick");
-      console.log(this.vm);
+      this.vm.$emit("getClick");
+      this.$emit("getUrl","fsfsd")
     },
   },
 };
